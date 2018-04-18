@@ -1,2 +1,2 @@
-# julia-tikz
+# Tikz.jl
 Julia package to write Tikz files
