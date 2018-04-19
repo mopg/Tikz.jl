@@ -24,6 +24,9 @@ Spring 2018
 """
 module Tikz
 
+    export tikzStyle
+    include("tikzStyle.jl")
+
     export tikzObj, closeObj
     include("tikzObj.jl")
 
