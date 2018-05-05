@@ -1,5 +1,5 @@
-function plot( obj::tikzObj, x::Vector{Float64}, y::Vector{Float64}; lw = 0.0, smooth = false, color = "", linestyle="", style=tikzStyle() )
-
+function plot( obj::tikzObj, x::Vector{Float64}, y::Vector{Float64};
+               lw = 0.0, smooth = false, color = "", linestyle="", style=tikzStyle() )
 
     n = length(x)
 
@@ -13,6 +13,8 @@ function plot( obj::tikzObj, x::Vector{Float64}, y::Vector{Float64}; lw = 0.0, s
     end
     if linestyle == "--" || linestyle == "dashed"
         @printf( obj.fID, "dashed, " )
+    elseif length(linestyle) > 0
+        @printf( obj.fID, "%s, ", linestyle )
     end
     if style.set
         @printf( obj.fID, "%s, ", style.name )
@@ -35,6 +37,7 @@ function plot( obj::tikzObj, x::Vector{Float64}, y::Vector{Float64}; lw = 0.0, s
 end
 
 
-function plot( obj::axisObj, x::Vector{Float64}, y::Vector{Float64} )
+function plot( obj::axisObj, x::Vector{Float64}, y::Vector{Float64};
+               lw = 0.0, smooth = false, color = "", linestyle="", style=tikzStyle() )
 
 end

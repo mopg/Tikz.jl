@@ -14,7 +14,7 @@
 # __precompile__()
 
 """
-    juliaTikz
+    Tikz.jl
 
 Julia Library to write to Tikz
 
@@ -35,5 +35,8 @@ module Tikz
 
     export plot
     include("plot.jl")
+
+    export node
+    include("node.jl")
 
 end

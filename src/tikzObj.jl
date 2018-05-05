@@ -21,12 +21,13 @@ function tikzObj( flname::String;
                   standalone = false,
                   scale = 1.0,
                   colors=Dict{String,Vector{Float64}}(),
-                  styles=Vector{tikzStyle}( 0 ) )
+                  styles=Vector{tikzStyle}( 0 ),
+                  textheight=12 )
 
     fID = open( flname, "w" )
 
     if standalone
-        @printf( fID, "\\documentclass[12pt]{standalone}\n" )
+        @printf( fID, "\\documentclass[%dpt]{standalone}\n", textheight )
         # Signature
         @printf( fID, "%% Generated using Tikz.jl on %s, %s\n\n", Dates.today(), Dates.format(now(), "HH:MM")  )
 
@@ -34,8 +35,6 @@ function tikzObj( flname::String;
         @printf( fID, "\\usepackage{tikz,pgfplots}\n" )
         @printf( fID, "\\usepackage{xcolor}\n\n" )
 
-        # Start document
-        @printf( fID, "\\begin{document}\n\n" )
     end
 
     # Colors
@@ -56,12 +55,19 @@ function tikzObj( flname::String;
         if length(styles[jj].color) > 0
             @printf( fID, "%s, ", styles[jj].color )
         end
-        if styles[jj].linestyle == "--" || styles[jj].linestyle == "dashed"
+        if styles[jj].linestyle == "--"
             @printf( fID, "dashed, " )
+        elseif length(styles[jj].linestyle) > 0
+            @printf( fID, "%s, ", styles[jj].linestyle )
         end
-        @printf( fID, "]\n" )
+        @printf( fID, "%s]\n ", styles[jj].extracommands )
     end
     @printf( fID, "\n" )
+
+    if standalone
+        # Start document
+        @printf( fID, "\\begin{document}\n\n" )
+    end
 
     @printf( fID, "\\begin{tikzpicture}")
     @printf( fID, "[color=defaultc,line width=%3.2fpt, scale=%3.2f]\n\n", lw, scale )

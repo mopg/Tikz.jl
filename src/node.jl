@@ -20,6 +20,6 @@ function node( obj::tikzObj, x::Float64, y::Float64; lw = 0.0, color = "",
     if length(name) > 0
         @printf( obj.fID, " (%s) ", name )
     end
-    @printf( obj.fID, " at ( %6.4f, %6.4f ) {%s};", x, y, text )
+    @printf( obj.fID, " at ( %6.4f, %6.4f ) {%s};\n\n", x, y, text )
 
 end
