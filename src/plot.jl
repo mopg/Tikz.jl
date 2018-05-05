@@ -1,6 +1,8 @@
 function plot( obj::tikzObj, x::Vector{Float64}, y::Vector{Float64};
                lw = 0.0, smooth = false, color = "", linestyle="", style=tikzStyle() )
 
+    @assert length(x) == length(y)
+
     n = length(x)
 
     # print start
@@ -37,7 +39,25 @@ function plot( obj::tikzObj, x::Vector{Float64}, y::Vector{Float64};
 end
 
 
-function plot( obj::axisObj, x::Vector{Float64}, y::Vector{Float64};
+function plot( obj::tikzObj, objAx::axisObj, x::Vector{Float64}, y::Vector{Float64};
                lw = 0.0, smooth = false, color = "", linestyle="", style=tikzStyle() )
+
+    @assert length(x) == length(y)
+
+    @printf( obj.fID, "  \\addplot [ " )
+
+    # add options
+
+    # end options
+    @printf( obj.fID, "  ]\n " )
+    @printf( obj.fID, "    table[row sep=crcr]{%%\n " )
+
+    # coordinates
+    for jj in 1:length(x)
+        @printf( obj.fID, "    %6.4f %6.4f\\\\ \n ", x[jj], y[jj] )
+    end
+
+    # close plot
+    @printf( obj.fID, "  };\n\n" )
 
 end
