@@ -22,7 +22,8 @@ function axisObj( obj::tikzObj;
                   xmin = -Inf,
                   xmax =  Inf,
                   ymin = -Inf,
-                  ymax =  Inf )
+                  ymax =  Inf,
+                  style = :Tufte )
 
     # open axis
     @printf( obj.fID, "  \\begin{axis}[%%\n" )
@@ -36,6 +37,11 @@ function axisObj( obj::tikzObj;
     end
     @printf( obj.fID, "    at = {(%4.3f,%4.3f)},\n", pos[1], pos[2] )
     @printf( obj.fID, "    scale only axis,\n" )
+
+    if style == :Tufte
+        # Move axis out
+        
+    end
 
     # end of optional commands axis
     @printf( obj.fID, "    ]\n" )
