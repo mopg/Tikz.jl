@@ -47,7 +47,20 @@ function plot( obj::tikzObj, objAx::axisObj, x::Vector{Float64}, y::Vector{Float
     @printf( obj.fID, "  \\addplot [ " )
 
     # add options
-
+    if lw > 0.0
+        @printf( obj.fID, "line width=%3.2fpt, ", lw )
+    end
+    if length(color) > 0
+        @printf( obj.fID, "%s, ", color )
+    end
+    if linestyle == "--" || linestyle == "dashed"
+        @printf( obj.fID, "dashed, " )
+    elseif length(linestyle) > 0
+        @printf( obj.fID, "%s, ", linestyle )
+    end
+    if style.set
+        @printf( obj.fID, "%s, ", style.name )
+    end
     # end options
     @printf( obj.fID, "  ]\n " )
     @printf( obj.fID, "    table[row sep=crcr]{%%\n " )
