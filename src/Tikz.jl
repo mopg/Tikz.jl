@@ -24,6 +24,9 @@ Spring 2018
 """
 module Tikz
 
+    using Printf
+    import Dates
+
     export tikzStyle
     include("tikzStyle.jl")
 

@@ -1,4 +1,4 @@
-type tikzStyle
+struct tikzStyle
 
     set::Bool
 

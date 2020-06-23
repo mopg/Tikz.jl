@@ -1,4 +1,4 @@
-type axisObj
+struct axisObj
 
     active::Bool
 
@@ -40,7 +40,7 @@ function axisObj( obj::tikzObj;
 
     if style == :Tufte
         # Move axis out
-        
+
     end
 
     # end of optional commands axis

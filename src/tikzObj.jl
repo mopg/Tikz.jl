@@ -1,4 +1,4 @@
-type tikzObj
+struct tikzObj
 
     flname::String
 
@@ -29,7 +29,7 @@ function tikzObj( flname::String;
     if standalone
         @printf( fID, "\\documentclass[%dpt]{standalone}\n", textheight )
         # Signature
-        @printf( fID, "%% Generated using Tikz.jl on %s, %s\n\n", Dates.today(), Dates.format(now(), "HH:MM")  )
+        @printf( fID, "%% Generated using Tikz.jl on %s, %s\n\n", Dates.today(), Dates.format(Dates.now(), "HH:MM")  )
 
         # Packages
         @printf( fID, "\\usepackage{tikz,pgfplots}\n" )
