@@ -2,3 +2,6 @@ name = "Tikz"
 uuid = "35ae908b-53a6-4acc-9dce-dbe40aaf3eb4"
 authors = ["Max Opgenoord <mopg@mit.edu>"]
 version = "0.1.0"
+
+[deps]
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"

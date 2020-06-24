@@ -22,7 +22,9 @@ function tikzObj( flname::String;
                   scale = 1.0,
                   colors=Dict{String,Vector{Float64}}(),
                   styles=Vector{tikzStyle}( 0 ),
-                  textheight=12 )
+                  textheight=12,
+                  additional_packages::Vector{String} = Vector{String}(undef,0),
+                  additional_packages_with_options::Vector{Tuple{String,String}} = Vector{Tuple{String,String}}(undef,0) )
 
     fID = open( flname, "w" )
 
@@ -33,7 +35,17 @@ function tikzObj( flname::String;
 
         # Packages
         @printf( fID, "\\usepackage{tikz,pgfplots}\n" )
-        @printf( fID, "\\usepackage{xcolor}\n\n" )
+        @printf( fID, "\\usepackage{xcolor}\n" )
+
+        for package in additional_packages
+            @printf( fID, "\\usepackage{%s}\n", package )
+        end
+
+        for package in additional_packages_with_options
+            @printf( fID, "\\usepackage[%s]{%s}\n", package[1], package[2] )
+        end
+
+        @printf( fID, "\n" )
 
     end
 
