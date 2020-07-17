@@ -1,4 +1,4 @@
-struct axisObj
+mutable struct axisObj
 
     active::Bool
 
