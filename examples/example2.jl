@@ -6,8 +6,8 @@ style = tikzStyle( "style1", lw = 2.0 )
 
 obj = tikzObj( "example2.tex", standalone = true, colors = colors, styles = [style] )
 
-x = linspace( 0., 3., 50).^1.
-y = sin.( 2*π * x) .* cos.( 1./6 * π * x )
+x = range( 0., 3., 50).^1.
+y = sin.( 2*π * x) .* cos.( 1 / 6 * π * x )
 
 axis1 = axisObj( obj )
 
